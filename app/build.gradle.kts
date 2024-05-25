@@ -32,6 +32,8 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -67,7 +69,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose")
     implementation("androidx.compose.material:material-icons-extended")
     implementation("io.coil-kt:coil-compose:2.5.0")
+
     //tests
+    implementation("io.coil-kt:coil-compose:2.6.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -80,8 +84,15 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.50")
     kapt("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-    // Apollo GraphQL:
-    implementation("com.apollographql.apollo3:apollo-runtime:3.7.3")
+
+    val koinVersion = "3.2.0"
+    val koinComposeVersion = "3.4.1"
+    implementation("io.insert-koin:koin-core:$koinVersion")
+    implementation("io.insert-koin:koin-android:$koinVersion")
+    implementation("io.insert-koin:koin-androidx-compose:$koinComposeVersion")
+
+
+
     //datrastore tokens:
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     //Retrofit para Conexiones de Red:
@@ -92,5 +103,10 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
 
     implementation ("com.google.firebase:firebase-auth-ktx:21.0.1")
+    implementation("androidx.compose.runtime:runtime-livedata")
+    //kotlin api client
+    implementation(platform("com.aallam.openai:openai-client-bom:3.2.0"))
+    implementation("com.aallam.openai:openai-client")
+    runtimeOnly ("io.ktor:ktor-client-okhttp")
 
 }

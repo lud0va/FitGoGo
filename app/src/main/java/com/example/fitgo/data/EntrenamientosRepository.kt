@@ -21,4 +21,11 @@ class EntrenamientosRepository @Inject constructor(
             emit(result)
         }.flowOn(Dispatchers.IO)
     }
+    fun getEntrenamiento(id:Int): Flow<NetworkResult<Entrenamientos>> {
+        return flow {
+            emit(NetworkResult.Loading())
+            val result= entrenamientosRemoteDataSource.getEntrenamiento(id)
+            emit(result)
+        }.flowOn(Dispatchers.IO)
+    }
 }

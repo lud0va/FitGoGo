@@ -35,4 +35,27 @@ class EntrenamientosRemoteDataSource @Inject constructor(
         }
 
     }
+    suspend fun getEntrenamiento(id:Int):NetworkResult<Entrenamientos>{
+        try {
+            val response=
+                entrenamientosApi.getById(id)
+            if (response.isSuccessful){
+                val body=
+                    response.body()
+                body?.let {
+                    return NetworkResult.Success(it)
+                }
+                error(Constantes.NO_DATA)
+            } else {
+                val msgerror = response.errorBody()?.string() ?: Constantes.SPACE
+                val adapter = moshi.adapter(Error::class.java)
+                val error = adapter.fromJson(msgerror)
+                return NetworkResult.Error(error?.message?: Constantes.SPACE)
+
+            }
+        } catch (e: Exception) {
+            return NetworkResult.Error(e.message ?: e.toString())
+        }
+
+    }
 }

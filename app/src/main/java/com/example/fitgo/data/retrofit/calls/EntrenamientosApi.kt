@@ -10,7 +10,10 @@ interface EntrenamientosApi {
 
     @GET("/entrenamientos/getByEmail")
     suspend fun getAllEntrenamientos(@Query("email") email: String): Response<List<Entrenamientos>>
+    @GET("/entrenamientos/byId")
+    suspend fun getById(@Query("id")email: Int):Response<Entrenamientos>
 
-
+    @GET("/getByDay")
+    suspend fun getByDay(@Query("day")day:String):Response<Entrenamientos>
 
 }

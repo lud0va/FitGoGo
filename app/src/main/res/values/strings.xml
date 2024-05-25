@@ -4,6 +4,8 @@
     <string name="add">Add</string>
     <string name="firstname">firstname </string>
     <string name="username">username </string>
+    <string name="entrenamiento">entrenamientoId</string>
+    <string name="dietaId">dietaId</string>
 
     <string name="lastname">lastname </string>
     <string name="email">email </string>
@@ -13,6 +15,13 @@
     <string name="addCustomerPath">addCustomer</string>
     <string name="entrenamientosPath">entrenamientos</string>
     <string name="plus">+</string>
+    <string name="ejercicios">Ejercicios :</string>
+    <string name="platos">Platos de la dieta :</string>
+    <string name="alimentosPerm">Alimentos permitidos en la dieta :</string>
+    <string name="chatConGpt">chatConGpt</string>
+    <string name="chat_message_loading">Escribiendo…</string>
+    <string name="chat_message_error">Algo falló, Pulsee aqui  para intentar </string>
+    <string name="dietasPath">dietas</string>
     <string name="tableList">Table list</string>
     <string name="custAct">Customer actualizado</string>
     <string name="register">register</string>
@@ -28,7 +37,9 @@
     <string name="pantallaLogin">pantallaLogin</string>
     <string name="addOrder">addOrder</string>
     <string name="customerId">customerId</string>
-    <string name="detalleCusthCustId">detalleCust/${customerId}</string>
+    <string name="detalleEntrenamiento">detalleEntren/{entrenamientoId}</string>
+    <string name="detalleDieta">detalleDieta/{dietaId}</string>
+
     <string name="detalleCustPath">detalleCust/{customerId}</string>
     <string name="addCustomer">addCustomer</string>
     <string name="ordersList">ordersList</string>

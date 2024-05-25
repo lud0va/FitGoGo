@@ -4,10 +4,10 @@ package com.example.fitgo.ui.navigation
 
 
 val screensBottomBar = listOf(
-    Screens("EntrenamientosList"),
-    Screens("DietasList"),
+    Screens("entrenamientos"),
+    Screens("dietas"),
 
-    Screens("Config"),
+    Screens("chatConGpt"),
 )
 
 data class Screens(val route: String) {

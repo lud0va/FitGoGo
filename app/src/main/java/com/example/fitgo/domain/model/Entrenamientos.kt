@@ -4,5 +4,5 @@ data class Entrenamientos(
     val id:Int,
     val diaSemana:String,
     val coachee:Coachee,
-    val ejercicios:List<Ejercicios> ?,
+    val ejercicios:List<Ejercicios> = emptyList(),
 )

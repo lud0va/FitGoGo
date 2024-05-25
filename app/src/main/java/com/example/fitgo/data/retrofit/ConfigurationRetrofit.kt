@@ -6,8 +6,16 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.Navigator
+import com.aallam.openai.client.OpenAI
+import com.aallam.openai.client.OpenAIConfig
 import com.example.common.ConstantesServer
+import com.example.fitgo.data.chat.ConversationRepository
+import com.example.fitgo.data.chat.OpenAIRepository
+import com.example.fitgo.data.retrofit.calls.AlimentosPermitidosApi
+import com.example.fitgo.data.retrofit.calls.DietaApi
+import com.example.fitgo.data.retrofit.calls.EjerciciosApi
 import com.example.fitgo.data.retrofit.calls.EntrenamientosApi
+import com.example.fitgo.data.retrofit.calls.PlatosApi
 import com.example.fitgo.data.retrofit.calls.UserApi
 import com.example.utils.DataStoreTokens
 import com.google.gson.Gson
@@ -65,7 +73,23 @@ class ConfigurationRetrofit {
             .add(LocalDateTimeAdapter())
             .build()
     }
+    @Provides
+    @Singleton
+    fun provideOpenAI() : OpenAI {
+        val config = OpenAIConfig(
+            token = "sk-proj-ys2zQPlVgvclKwuWrCZuT3BlbkFJqHmIKeudza92qtSAqF1k"
+        )
 
+        return OpenAI(config)
+
+    }
+    @Provides
+    @Singleton
+    fun provideOpenAIRepository() : ConversationRepository {
+
+        return ConversationRepository()
+
+    }
     @Singleton
     @Provides
     fun getOkHttpClient(): OkHttpClient {
@@ -88,7 +112,7 @@ class ConfigurationRetrofit {
     fun retrofits(gson: Gson, clientOK: OkHttpClient): Retrofit {
 
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.24:8080")
+            .baseUrl(ConstantesServer.IPSERVIDORAUTH)
 
             .addConverterFactory(GsonConverterFactory.create(gson))
 
@@ -102,7 +126,7 @@ class ConfigurationRetrofit {
     fun retrofitsRest(gson: Gson, clientOK: OkHttpClient): Retrofit {
 
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.24:8081")
+            .baseUrl(ConstantesServer.IPSERVERREST)
 
             .addConverterFactory(GsonConverterFactory.create(gson))
 
@@ -115,6 +139,24 @@ class ConfigurationRetrofit {
     @Provides
     fun getApiEntrenamientos(  @Named("Service2")retrofit: Retrofit): EntrenamientosApi {
         return retrofit.create(EntrenamientosApi::class.java)
+    }
+    @Singleton
+    @Provides
+    fun getApiEjercicios( @Named("Service2")retrofit: Retrofit): EjerciciosApi {
+        return retrofit.create(EjerciciosApi::class.java)
+    }
+    @Singleton
+    @Provides
+    fun getApiPlato( @Named("Service2")retrofit: Retrofit): PlatosApi {
+        return retrofit.create(PlatosApi::class.java)
+    }@Singleton
+    @Provides
+    fun getApiDieta( @Named("Service2")retrofit: Retrofit): DietaApi {
+        return retrofit.create(DietaApi::class.java)
+    }@Singleton
+    @Provides
+    fun getApiAlimentosPermitidos( @Named("Service2")retrofit: Retrofit): AlimentosPermitidosApi {
+        return retrofit.create(AlimentosPermitidosApi::class.java)
     }
     @Singleton
     @Provides
