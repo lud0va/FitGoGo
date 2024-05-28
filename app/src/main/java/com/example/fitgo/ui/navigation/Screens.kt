@@ -4,9 +4,8 @@ package com.example.fitgo.ui.navigation
 
 
 val screensBottomBar = listOf(
-    Screens("entrenamientos"),
+    Screens("mainScreen"),
     Screens("dietas"),
-
     Screens("chatConGpt"),
 )
 

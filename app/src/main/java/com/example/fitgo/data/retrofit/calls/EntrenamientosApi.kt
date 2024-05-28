@@ -13,7 +13,7 @@ interface EntrenamientosApi {
     @GET("/entrenamientos/byId")
     suspend fun getById(@Query("id")email: Int):Response<Entrenamientos>
 
-    @GET("/getByDay")
-    suspend fun getByDay(@Query("day")day:String):Response<Entrenamientos>
+    @GET("entrenamientos/getByDia")
+    suspend fun getByDia(@Query("dia")day:String):Response<Entrenamientos>
 
 }

@@ -34,10 +34,10 @@ class UserRemoteDataSource @Inject constructor(
         }
 
     }
-    suspend fun getRegister(mail: String, password: String,username:String): NetworkResult<Boolean> {
+    suspend fun getRegister(mail: String, password: String,username:String,code:String): NetworkResult<Boolean> {
         try {
             val response=
-                userApi.register(mail,password,username)
+                userApi.register(mail,password,username,code)
             if (response.isSuccessful){
                 val body=   response.body()
                 body?.let {

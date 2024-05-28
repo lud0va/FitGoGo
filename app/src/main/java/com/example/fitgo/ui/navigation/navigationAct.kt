@@ -20,6 +20,7 @@ import com.example.fitgo.ui.dietas.DietasLista
 import com.example.fitgo.ui.dietas.dietasdetalle.DietaDetalle
 import com.example.fitgo.ui.entrenamientoscompose.EntrenamientosLista
 import com.example.fitgo.ui.entrenamientoscompose.entrenamientosdetalles.EntrenamientosDetalle
+import com.example.fitgo.ui.main.mainScreen
 
 @Composable
 
@@ -34,6 +35,8 @@ fun navigationAct() {
     val dietaList = stringResource(id = R.string.dietasPath)
     val dietaDetallePath= stringResource(id = R.string.detalleDieta)
     val chatConChatgpt= stringResource(id = R.string.chatConGpt)
+    val mainScreen= stringResource(id = R.string.mainScreen)
+
     NavHost(
         navController = navController,
         startDestination = splashRoute,
@@ -55,6 +58,7 @@ fun navigationAct() {
                 onViewDetalle = { entrenamientoId ->
                     navController.navigate("detalleEntren/${entrenamientoId}")
                 },
+
                 bottomNavigationBar = {
                     BottomBar(
                         navController = navController,
@@ -114,12 +118,44 @@ fun navigationAct() {
             )
         }
         composable(
-            chatConChatgpt
-        ){
+            dietaList
 
-            PantallaChat(
+        ) {
+            DietasLista(
+                navController,
+                onViewDetalle = { dietaId ->
+                    navController.navigate("detalleDieta/${dietaId}")
+                },
+                bottomNavigationBar = {
+                    BottomBar(
+                        navController = navController,
+                        screens = screensBottomBar
+                    )
+                }
 
             )
         }
+        composable(
+            mainScreen
+        ){
+
+            mainScreen(
+                navController,
+                onViewEntrenamiento = {entrenamientoId->
+                                      navController.navigate("detalleEntren/${entrenamientoId}")
+                },
+
+
+            ){
+
+            }
+        }
+        composable(
+            chatConChatgpt
+        ){
+
+                PantallaChat()
+            }
+        }
     }
-}
+

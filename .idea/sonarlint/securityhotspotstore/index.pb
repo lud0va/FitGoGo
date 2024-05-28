@@ -179,3 +179,13 @@ w
 G.idea/sonarlint/issuestore/e/f/ef1838e880691addbd083a8c29fc9bb1f6e4a8a2,e\8\e80b62e9b6984046496319befe153586759980bf
 w
 G.idea/sonarlint/issuestore/b/7/b7efd758cbc32efa63ea59869cf52032d3533c03,2\e\2e2d880370354cc6e6b8d90253dcbcfb13452fd0
+’
+bapp/src/main/java/com/example/fitgo/domain/usecases/entrenamientos/GetEntrenamientoByDiaUseCase.kt,a\a\aa6f9be6045ec557821eb78f2dcf3b0c0b9fa4ab
+u
+Eapp/src/main/java/com/example/fitgo/data/retrofit/calls/CoacheeApi.kt,b\3\b32a9a3244c7a708983ee9b0767ff11a3efb21d6
+„
+Tapp/src/main/java/com/example/fitgo/data/remotedatasource/CoacheeRemoteDataSource.kt,2\9\295c5da680f622570adeef0f3759b4e2261bbdda
+m
+=app/src/main/java/com/example/fitgo/data/CoacheeRepository.kt,3\8\38224a9b564f90f2bbb6fab5836499a489d39985
+‡
+Wapp/src/main/java/com/example/fitgo/domain/usecases/coachee/GetCoacheeByEmailUseCase.kt,d\2\d2b23eae4e1288dd5ecdab83537fe3de74d2534d

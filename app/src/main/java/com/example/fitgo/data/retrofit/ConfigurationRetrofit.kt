@@ -12,6 +12,7 @@ import com.example.common.ConstantesServer
 import com.example.fitgo.data.chat.ConversationRepository
 import com.example.fitgo.data.chat.OpenAIRepository
 import com.example.fitgo.data.retrofit.calls.AlimentosPermitidosApi
+import com.example.fitgo.data.retrofit.calls.CoacheeApi
 import com.example.fitgo.data.retrofit.calls.DietaApi
 import com.example.fitgo.data.retrofit.calls.EjerciciosApi
 import com.example.fitgo.data.retrofit.calls.EntrenamientosApi
@@ -73,11 +74,13 @@ class ConfigurationRetrofit {
             .add(LocalDateTimeAdapter())
             .build()
     }
+    //k pos 1
     @Provides
     @Singleton
     fun provideOpenAI() : OpenAI {
         val config = OpenAIConfig(
-            token = "sk-proj-ys2zQPlVgvclKwuWrCZuT3BlbkFJqHmIKeudza92qtSAqF1k"
+
+            token = "s-proj-ys2zQPlVgvclKwuWrCZuT3BlbkFJqHmIKeudza92qtSAqF1k"
         )
 
         return OpenAI(config)
@@ -149,7 +152,13 @@ class ConfigurationRetrofit {
     @Provides
     fun getApiPlato( @Named("Service2")retrofit: Retrofit): PlatosApi {
         return retrofit.create(PlatosApi::class.java)
-    }@Singleton
+    }
+    @Singleton
+    @Provides
+    fun getApiCoachee( @Named("Service2")retrofit: Retrofit): CoacheeApi {
+        return retrofit.create(CoacheeApi::class.java)
+    }
+    @Singleton
     @Provides
     fun getApiDieta( @Named("Service2")retrofit: Retrofit): DietaApi {
         return retrofit.create(DietaApi::class.java)

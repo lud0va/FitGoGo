@@ -34,6 +34,7 @@ class LoginViewModel @Inject constructor(
 
     fun event(event: LoginContract.Event) {
         when (event) {
+            is LoginContract.Event.CambiarCodeState->cambiarCodeCoach(event.coachCode)
             is LoginContract.Event.CambiarPasswState -> cambiarPasswState(event.passw)
             is LoginContract.Event.CambiarUserState -> cambiarUserState(event.username)
             is LoginContract.Event.CambiarNameState->cambiarName(event.name)
@@ -43,6 +44,11 @@ class LoginViewModel @Inject constructor(
             LoginContract.Event.register -> doRegister()
             is LoginContract.Event.CambiarLoginSuccess -> cambiarLoginSuccess(event.flag)
             else -> {}
+        }
+    }
+    fun cambiarCodeCoach(codeCoach:String){
+        _uiState.update {
+            it.copy(code=codeCoach)
         }
     }
 
@@ -135,31 +141,36 @@ class LoginViewModel @Inject constructor(
 
 
                 uiState.value.email?.let {
+
                     uiState.value.password?.let { it1->
                         uiState.value.name?.let {it2->
-                        registerUseCase.userRepository.doRegister(
-                            it,
-                            it1 ,
-                            it2
-                        ).collect { result ->
-                            when (result) {
-                                is NetworkResult.Error -> {
-                                    _uiState.update {
-                                        it.copy(
-                                            message = result.message,
+                            uiState.value.code?.let {it3->
+                                registerUseCase.userRepository.doRegister(
+                                    it,
+                                    it1 ,
+                                    it2,
+                                    it3
+                                ).collect { result ->
+                                    when (result) {
+                                        is NetworkResult.Error -> {
+                                            _uiState.update {
+                                                it.copy(
+                                                    message = result.message,
 
-                                            )
+                                                    )
+                                            }
+                                        }
+
+                                        is NetworkResult.Loading -> _uiState.update { it.copy() }
+                                        is NetworkResult.Success -> _uiState.update { it.copy(message = stringProvider.getString(R.string.registroCompl), registersuccess = true) }
+
                                     }
                                 }
 
-                                is NetworkResult.Loading -> _uiState.update { it.copy() }
-                                is NetworkResult.Success -> _uiState.update { it.copy(message = stringProvider.getString(R.string.registroCompl), registersuccess = true) }
 
                             }
-                        }
+                            }
 
-
-                    }
                 }
                 }
             }else{

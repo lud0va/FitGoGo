@@ -91,7 +91,7 @@ fun ContenidoPantalla(
 
 ) {
     val label= stringResource(id = R.string.ok)
-    val navigateToEntrenamientosList= stringResource(id = R.string.entrenamientosPath)
+    val navigateToMainScreen= stringResource(id = R.string.mainScreen)
     val snackbarHostState = remember { SnackbarHostState() }
 
     Scaffold(
@@ -124,7 +124,7 @@ fun ContenidoPantalla(
             if (state.registerMode){
                 nameUser(state, cambiarName)
                 Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
-
+                coachCode(state, cambiarUser)
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimen_6dp)))
             }
 
@@ -145,7 +145,7 @@ fun ContenidoPantalla(
                 LaunchedEffect(state.loginsucces) {
                     viewModel?.event(LoginContract.Event.CambiarLoginSuccess(false))
 
-                    navController.navigate(navigateToEntrenamientosList)
+                    navController.navigate(navigateToMainScreen)
                 }
             }
 
@@ -198,7 +198,26 @@ fun emailUsuario(state: LoginContract.State, cambiarUser: (String) -> Unit) {
 
 
 }
+@Composable
+fun coachCode(state: LoginContract.State, cambiarUser: (String) -> Unit) {
 
+
+
+    TextField(
+        value = state.code?:"",
+        placeholder = { Text(text = stringResource(id = R.string.coachCode)) },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+        onValueChange = {
+            cambiarUser(it)
+        },
+        singleLine = true,
+        enabled = true,
+        modifier = Modifier.fillMaxWidth()
+
+    )
+
+
+}
 @Composable
 fun loginBtn(login: () -> Unit,state: LoginContract.State) {
 

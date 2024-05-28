@@ -95,11 +95,16 @@ fun listaEjercicos(
         modifier = Modifier
 
             .fillMaxSize()
-            .background(Color.Gray)
+            .background(Color.White)
     ) {
+            if(!state.ejercicios.isEmpty()){
+                items(items = state.ejercicios, key = { entr -> entr.id }) { entr ->
+                    ejercicioItem(ejercicio = entr)
+            }
 
-        items(items = state.ejercicios, key = { entr -> entr.id }) { entr ->
-            ejercicioItem(ejercicio = entr)
+
+
+
 
 
 
@@ -120,16 +125,18 @@ fun ejercicioItem(
         .padding(dimensionResource(id = R.dimen.dimen_8dp))
         ) {
         Row(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_8dp)) ) {
+            if(ejercicio.nombre!=null && ejercicio.descripcion!=null){
+                Text(
+                    modifier = Modifier.weight(weight = 0.4F),
+                    text = ejercicio.nombre
+                )
+                Text(
+                    modifier = Modifier.weight(weight = 0.4F),
+                    text = ejercicio.descripcion
 
-            Text(
-                modifier = Modifier.weight(weight = 0.4F),
-                text = ejercicio.nombre
-            )
-            Text(
-                modifier = Modifier.weight(weight = 0.4F),
-                text = ejercicio.descripcion
+                )
+            }
 
-            )
 
 
         }

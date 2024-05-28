@@ -4,5 +4,8 @@ data class Coachee(
     val idcoachee:Int?,
     val username:String?,
     val idcoach:Int?,
-    val objetivos:String
+    val objetivos:String,
+    val edad:Int,
+    val peso:Int,
+
 )

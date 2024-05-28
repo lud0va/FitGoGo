@@ -15,6 +15,8 @@
     <string name="addCustomerPath">addCustomer</string>
     <string name="entrenamientosPath">entrenamientos</string>
     <string name="plus">+</string>
+    <string name="coachCode">código del coach</string>
+
     <string name="ejercicios">Ejercicios :</string>
     <string name="platos">Platos de la dieta :</string>
     <string name="alimentosPerm">Alimentos permitidos en la dieta :</string>
@@ -26,6 +28,7 @@
     <string name="custAct">Customer actualizado</string>
     <string name="register">register</string>
     <string name="login">login</string>
+    <string name="verEntrenamientos">Ver entrenamientos</string>
     <string name="customerListPath">customersList</string>
     <string name="introducirNamePasw">Introduce un usuario y contraseña</string>
     <string name="registroCompl">Registro completado</string>
@@ -37,6 +40,8 @@
     <string name="pantallaLogin">pantallaLogin</string>
     <string name="addOrder">addOrder</string>
     <string name="customerId">customerId</string>
+    <string name="mainScreen">mainScreen</string>
+
     <string name="detalleEntrenamiento">detalleEntren/{entrenamientoId}</string>
     <string name="detalleDieta">detalleDieta/{dietaId}</string>
 

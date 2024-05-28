@@ -58,4 +58,27 @@ class EntrenamientosRemoteDataSource @Inject constructor(
         }
 
     }
+    suspend fun getEntrenamientoByDia(dia:String):NetworkResult<Entrenamientos>{
+        try {
+            val response=
+                entrenamientosApi.getByDia(dia)
+            if (response.isSuccessful){
+                val body=
+                    response.body()
+                body?.let {
+                    return NetworkResult.Success(it)
+                }
+                error(Constantes.NO_DATA)
+            } else {
+                val msgerror = response.errorBody()?.string() ?: Constantes.SPACE
+                val adapter = moshi.adapter(Error::class.java)
+                val error = adapter.fromJson(msgerror)
+                return NetworkResult.Error(error?.message?: Constantes.SPACE)
+
+            }
+        } catch (e: Exception) {
+            return NetworkResult.Error(e.message ?: e.toString())
+        }
+
+    }
 }

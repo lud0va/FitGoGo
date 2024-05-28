@@ -28,4 +28,11 @@ class EntrenamientosRepository @Inject constructor(
             emit(result)
         }.flowOn(Dispatchers.IO)
     }
+    fun getEntrenamientoByDia(dia:String):Flow<NetworkResult<Entrenamientos>>{
+        return flow {
+            emit(NetworkResult.Loading())
+            val result= entrenamientosRemoteDataSource.getEntrenamientoByDia(dia)
+            emit(result)
+        }.flowOn(Dispatchers.IO)
+    }
 }

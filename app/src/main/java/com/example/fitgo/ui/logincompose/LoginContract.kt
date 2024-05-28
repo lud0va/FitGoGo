@@ -10,6 +10,7 @@ interface LoginContract {
         class CambiarNameState(val name: String):Event()
         class CambiarLastNameState(val lastname: String):Event()
         class CambiarPasswState(val passw: String):Event()
+        class CambiarCodeState(val coachCode:String):Event()
 
 
 
@@ -19,6 +20,7 @@ interface LoginContract {
         val email:String?=null,
         val password:String?=null,
         val name:String?=null,
+        val code:String?=null,
         val lastname:String?=null,
         val message:String?=null,
         val isLoading:Boolean=false,
