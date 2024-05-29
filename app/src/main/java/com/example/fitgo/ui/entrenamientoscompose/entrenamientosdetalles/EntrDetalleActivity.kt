@@ -68,10 +68,13 @@ fun ContenidoCustPantalla(
 
 
 
+        Row(){
+            Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
+            diaEntrenamiento(state)
+            Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
+            tipoEntrenamiento(state)
 
-        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
-        diaEntrenamiento(state)
-        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
+        }
 
         Text(text = stringResource(id = R.string.ejercicios))
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
@@ -149,6 +152,23 @@ fun diaEntrenamiento(
     state.entrenamiento?.diaSemana?.let { lastname ->
         TextField(
             value = lastname,
+
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            onValueChange = {},
+            singleLine = true,
+            enabled = false,
+            modifier = Modifier.fillMaxWidth()
+
+        )
+    }
+}
+@Composable
+fun tipoEntrenamiento(
+    state: EntrDetalleContract.State
+){
+    state.entrenamiento?.tipo?.let { tipo ->
+        TextField(
+            value = tipo,
 
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             onValueChange = {},
