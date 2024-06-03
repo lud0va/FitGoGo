@@ -17,8 +17,11 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 
@@ -37,6 +40,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -68,7 +72,11 @@ fun pantallaLogin(
             { viewModel.event(LoginContract.Event.CambiarEmailState(it)) },
             { viewModel.event(LoginContract.Event.CambiarUsernameState(it)) },
             { viewModel.event(LoginContract.Event.CambiarRegisterModeSuccess(it)) },
-            { viewModel.event(LoginContract.Event.CambiarCodeState(it)) }
+            { viewModel.event(LoginContract.Event.CambiarCodeState(it)) },
+            {viewModel.event(LoginContract.Event.CambiarSexState(it))},
+            {viewModel.event(LoginContract.Event.CambiarAgeState(it))},
+            {viewModel.event(LoginContract.Event.CambiarWeightState(it))},
+            {viewModel.event(LoginContract.Event.CambiarExpanded(it))}
 
 
         )
@@ -89,6 +97,11 @@ fun ContenidoPantalla(
     cambiarName:(String) ->Unit,
     cambiarRegisterMode:(Boolean)->Unit,
     cambiarCode:(String) ->Unit,
+    cambiarSexo:(String)->Unit,
+    cambiarAge:(Int)->Unit,
+    cambiarWeight:(Int)->Unit,
+    cambiarExpanded:(Boolean)->Unit
+
 
 
 
@@ -129,6 +142,12 @@ fun ContenidoPantalla(
                 Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
                 coachCode(state, cambiarCode)
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimen_6dp)))
+                ageUser(state, cambiarAge )
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimen_6dp)))
+                weightUser(state, cambiarWeight )
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimen_6dp)))
+                sexUser(state, cambiarSexo,cambiarExpanded )
+
             }
 
             Row(
@@ -181,7 +200,43 @@ fun switchMode(state: LoginContract.State,cambiarRegisterMode: (Boolean) -> Unit
 
     )
 }
+
 @Composable
+fun sexUser(
+    state: LoginContract.State,
+    cambiarSexo: (String) -> Unit,
+    cambiarExpanded:(Boolean)->Unit
+
+){
+    val opciones = listOf("Hombre", "Mujer")
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(text = "Sexo seleccionado: ${state.sex}")
+
+        OutlinedButton(
+            onClick = {cambiarExpanded(true)},
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            (if (state.sex?.isEmpty() == true) "Seleccionar sexo" else state.sex)?.let { Text(text = it) }
+        }
+
+        DropdownMenu(
+            expanded = state.expanded,
+            onDismissRequest = { cambiarExpanded(false) }
+        ) {
+            opciones.forEach { opcion ->
+                DropdownMenuItem(
+                    onClick = {
+                        cambiarSexo(opcion)
+                        cambiarExpanded(false)
+                    }, text = {
+                        Text(text = opcion)
+                    }
+                )
+            }
+        }
+    }
+}@Composable
 fun emailUsuario(state: LoginContract.State, cambiarUser: (String) -> Unit) {
 
 
@@ -198,6 +253,48 @@ fun emailUsuario(state: LoginContract.State, cambiarUser: (String) -> Unit) {
             modifier = Modifier.fillMaxWidth()
 
         )
+
+
+}
+@Composable
+fun ageUser(state: LoginContract.State, cambiarAge: (Int) -> Unit) {
+
+
+
+    TextField(
+        value = state.age.toString(),
+        placeholder = { Text(text = stringResource(id = R.string.email)) },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+
+        onValueChange = {
+            cambiarAge(it.toInt())
+        },
+        singleLine = true,
+        enabled = true,
+        modifier = Modifier.fillMaxWidth()
+
+    )
+
+
+}
+@Composable
+fun weightUser(state: LoginContract.State, cambiarWeight: (Int) -> Unit){
+
+
+
+    TextField(
+        value = state.weight.toString(),
+        placeholder = { Text(text = stringResource(id = R.string.email)) },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+
+        onValueChange = {
+            cambiarWeight(it.toInt())
+        },
+        singleLine = true,
+        enabled = true,
+        modifier = Modifier.fillMaxWidth()
+
+    )
 
 
 }
@@ -221,6 +318,7 @@ fun coachCode(state: LoginContract.State, cambiarUser: (String) -> Unit) {
 
 
 }
+
 @Composable
 fun loginBtn(login: () -> Unit,state: LoginContract.State) {
 

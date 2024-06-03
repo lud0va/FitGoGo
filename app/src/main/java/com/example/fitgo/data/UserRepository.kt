@@ -21,10 +21,10 @@ class UserRepository  @Inject constructor(
             emit(result)
         }.flowOn(Dispatchers.IO)
     }
-    fun doRegister(mail:String,password:String,username:String,code:String):Flow<NetworkResult<Boolean>>{
+    fun doRegister(mail:String,password:String,username:String,code:String,sex:String,age:Int,weigh:Int):Flow<NetworkResult<Boolean>>{
         return flow {
             emit(NetworkResult.Loading())
-            val result=userRemoteDataSource.getRegister(mail,password,username,code)
+            val result=userRemoteDataSource.getRegister(mail,password,username,code,sex, age,weigh)
             emit(result)
 
 

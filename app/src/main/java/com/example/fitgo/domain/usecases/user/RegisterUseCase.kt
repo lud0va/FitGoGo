@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class RegisterUseCase @Inject constructor(
     val userRepository: UserRepository){
-   fun invoke(email:String,password:String,username:String,code:String)=userRepository.doRegister(email,password, username,code)
+   fun invoke(email:String,password:String,username:String,code:String,sex:String,age:Int,weight:Int)=userRepository.doRegister(email,password, username,code,sex,age,weight)
 }

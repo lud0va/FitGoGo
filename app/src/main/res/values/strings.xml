@@ -6,6 +6,7 @@
     <string name="username">username </string>
     <string name="entrenamiento">entrenamientoId</string>
     <string name="dietaId">dietaId</string>
+    <string name="age">age </string>
 
     <string name="lastname">lastname </string>
     <string name="email">email </string>
