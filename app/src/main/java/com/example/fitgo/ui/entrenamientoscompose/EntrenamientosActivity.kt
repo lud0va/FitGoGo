@@ -108,7 +108,10 @@ fun EntrenamientoItem(
         .padding(dimensionResource(id = R.dimen.dimen_8dp))
         .clickable { onViewDetalle(entrenamiento.id) }) {
         Row(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_8dp)) ) {
-
+            Text(
+                modifier = Modifier.weight(weight = 0.4F),
+                text = entrenamiento.diaSemana
+            )
             Text(
                 modifier = Modifier.weight(weight = 0.4F),
                 text = entrenamiento.tipo

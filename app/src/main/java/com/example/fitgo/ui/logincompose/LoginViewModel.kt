@@ -36,9 +36,8 @@ class LoginViewModel @Inject constructor(
         when (event) {
             is LoginContract.Event.CambiarCodeState->cambiarCodeCoach(event.coachCode)
             is LoginContract.Event.CambiarPasswState -> cambiarPasswState(event.passw)
-            is LoginContract.Event.CambiarUserState -> cambiarUserState(event.username)
-            is LoginContract.Event.CambiarNameState->cambiarName(event.name)
-            is LoginContract.Event.CambiarLastNameState-> cambiarLastName(event.lastname)
+            is LoginContract.Event.CambiarEmailState -> cambiarEmailState(event.email)
+            is LoginContract.Event.CambiarUsernameState->cambiarUsername(event.name)
             is LoginContract.Event.CambiarRegisterModeSuccess->cambiarRegisterModeSuccess(event.flag)
             LoginContract.Event.login -> doLogin()
             LoginContract.Event.register -> doRegister()
@@ -63,19 +62,15 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun cambiarName(name:String){
+    fun cambiarUsername(name:String){
         _uiState.update {
-            it.copy(email = name)
+            it.copy(username = name)
         }
     }
-    fun cambiarLastName(lastName:String){
-  _uiState.update {
-     it.copy(email = lastName)
-                     }
-    }
-    fun cambiarUserState(user: String) {
+
+    fun cambiarEmailState(email: String) {
         _uiState.update {
-            it.copy(email = user)
+            it.copy(email =  email)
         }
     }
 
@@ -143,7 +138,7 @@ class LoginViewModel @Inject constructor(
                 uiState.value.email?.let {
 
                     uiState.value.password?.let { it1->
-                        uiState.value.name?.let {it2->
+                        uiState.value.username?.let { it2->
                             uiState.value.code?.let {it3->
                                 registerUseCase.userRepository.doRegister(
                                     it,

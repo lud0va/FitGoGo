@@ -145,10 +145,14 @@ fun navigationAct() {
                                       navController.navigate("detalleEntren/${entrenamientoId}")
                 },
 
+                bottomNavigationBar = {
+                    BottomBar(
+                        navController = navController,
+                        screens = screensBottomBar
+                    )
+                }
 
-            ){
-
-            }
+                )
         }
         composable(
             chatConChatgpt

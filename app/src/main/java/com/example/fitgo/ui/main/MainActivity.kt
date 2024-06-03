@@ -145,25 +145,22 @@ fun entrenamientoToday(
 
             state.entrenamiento?.diaSemana?.let {
                 Text(
-                    modifier = Modifier.weight(0.4f),
+                    modifier = Modifier.weight(0.2f),
                     text = it,
                     style = TextStyle(
-                        fontSize = 14.sp
-                    )
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 15.sp                    )
                 )
             }
             Text(
                 modifier = Modifier.weight(0.2f),
-                text = "entrenamiento del día"
+                text = "entrenamiento del día: "
             )
             state.entrenamiento?.tipo?.let {
                 Text(
                     modifier = Modifier.weight(0.2f),
                     text = it,
-                    style = TextStyle(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
-                    )
+
                 )
             }
         }

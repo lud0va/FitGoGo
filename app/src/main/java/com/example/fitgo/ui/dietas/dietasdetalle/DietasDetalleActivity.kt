@@ -72,12 +72,16 @@ fun ContenidoDietaPantalla(
 
 
     ) {
-    Column(modifier = align) {
+    Column( modifier =align
+    ) {
+        Text(text = stringResource(id = R.string.finDieta))
 
-
-        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
-        caloriasMaxDia(state)
         finDieta(state)
+        Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
+        Text(text = stringResource(id = R.string.calsPorDia))
+
+        caloriasMaxDia(state)
+
 
 
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
@@ -86,17 +90,20 @@ fun ContenidoDietaPantalla(
         Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
 
 
-        Column {
-            Text(text = stringResource(id = R.string.alimentosPerm))
-
-            listaAlimentos(
-                state = state,
-
-                )
+        Column ( Modifier
+            .fillMaxSize()
+            .background(Color.Gray)
+            .padding(dimensionResource(id = R.dimen.dimen_8dp))){
             Text(text = stringResource(id = R.string.platos))
             listaPlatos(
-                state = state
+                state = state,
+                modifier = Modifier.weight(1f)
             )
+            Text(text = stringResource(id = R.string.alimentosPerm))
+
+            listaAlimentos(state = state, modifier = Modifier.weight(1f))
+
+
 
         }
 
@@ -146,12 +153,13 @@ fun finDieta(
 @Composable
 fun listaAlimentos(
     state: DetalleDietaContract.State,
+    modifier: Modifier = Modifier
 ) {
     LazyColumn(
         modifier = Modifier
 
             .fillMaxSize()
-            .background(Color.Gray)
+            .background(Color.White)
     ) {
 
         items(items = state.alimentosPermitidos, key = { alims -> alims.id }) { alims ->
@@ -168,12 +176,13 @@ fun listaAlimentos(
 @Composable
 fun listaPlatos(
     state: DetalleDietaContract.State,
+    modifier: Modifier = Modifier
 ) {
     LazyColumn(
         modifier = Modifier
 
             .fillMaxSize()
-            .background(Color.Gray)
+            .background(Color.White)
     ) {
 
         items(items = state.platos, key = { plato -> plato.id }) { plato ->

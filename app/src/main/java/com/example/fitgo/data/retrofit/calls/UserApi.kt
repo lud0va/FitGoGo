@@ -9,8 +9,8 @@ interface UserApi {
     @GET("/login")
     suspend fun login(@Query("email") email: String, @Query("password") password: String): Response<AuthenticationResponse>
 
-    @GET("/register")
-    suspend fun register(@Query("email")email:String,@Query("password") password:String,@Query("username") username:String,code:String):Response<Boolean>
+    @GET("/registerCoachee")
+    suspend fun register(@Query("email")email:String,@Query("password") password:String,@Query("username") username:String,@Query("coachCode")code:String):Response<Boolean>
     @GET("/refreshtoken")
     suspend fun getAccessToken(@Query("refreshtoken")refreshtoken:String):Response<String>
 

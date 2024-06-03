@@ -80,7 +80,7 @@ class ConfigurationRetrofit {
     fun provideOpenAI() : OpenAI {
         val config = OpenAIConfig(
 
-            token = "s-proj-ys2zQPlVgvclKwuWrCZuT3BlbkFJqHmIKeudza92qtSAqF1k"
+            token = "sk-proj-ys2zQPlVgvclKwuWrCZuT3BlbkFJqHmIKeudza92qtSAqF1k"
         )
 
         return OpenAI(config)

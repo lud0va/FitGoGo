@@ -61,7 +61,10 @@ fun ListaEntrenamientos(
     state: DietasContract.State,
     onViewDetalle: (Int) -> Unit,
     bottomNavigationBar: @Composable () -> Unit = {},
+    modifier: Modifier = Modifier
+
 ){
+
     val snackbarHostState = remember { SnackbarHostState() }
     val label= stringResource(id = R.string.ok)
     Scaffold(
@@ -76,12 +79,17 @@ fun ListaEntrenamientos(
                 )
             }
         }
+
+
+
         LazyColumn(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
                 .background(Color.Gray)
         ) {
+
+
 
             items(items = state.dietas, key = { entr -> entr.id }) { entr ->
                 EntrenamientoItem(dieta = entr, onViewDetalle = onViewDetalle)
@@ -111,16 +119,16 @@ fun EntrenamientoItem(
         .padding(dimensionResource(id = R.dimen.dimen_8dp))
         .clickable { onViewDetalle(dieta.id) }) {
         Row(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_8dp)) ) {
+
             Text(
                 modifier = Modifier.weight(weight = 0.4F),
-                text = dieta.id.toString()
-
+                text = "Fin dieta: "+dieta.finDieta.toString()
             )
             Text(
                 modifier = Modifier.weight(weight = 0.4F),
-                text = dieta.finDieta.toString()
-            )
+                text = "Es fija: "+dieta.fija
 
+            )
 
         }
     }

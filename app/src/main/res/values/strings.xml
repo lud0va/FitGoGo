@@ -16,6 +16,8 @@
     <string name="entrenamientosPath">entrenamientos</string>
     <string name="plus">+</string>
     <string name="coachCode">código del coach</string>
+    <string name="calsPorDia">Max calorias por dia</string>
+    <string name="finDieta">Fecha del final de la dieta</string>
 
     <string name="ejercicios">Ejercicios :</string>
     <string name="platos">Platos de la dieta :</string>

@@ -65,9 +65,10 @@ fun pantallaLogin(
             { viewModel.event(LoginContract.Event.login) },
             { viewModel.event(LoginContract.Event.register) },
             { viewModel.event(LoginContract.Event.CambiarPasswState(it)) },
-            { viewModel.event(LoginContract.Event.CambiarUserState(it)) },
-            { viewModel.event(LoginContract.Event.CambiarNameState(it)) },
-            { viewModel.event(LoginContract.Event.CambiarRegisterModeSuccess(it)) }
+            { viewModel.event(LoginContract.Event.CambiarEmailState(it)) },
+            { viewModel.event(LoginContract.Event.CambiarUsernameState(it)) },
+            { viewModel.event(LoginContract.Event.CambiarRegisterModeSuccess(it)) },
+            { viewModel.event(LoginContract.Event.CambiarCodeState(it)) }
 
 
         )
@@ -84,12 +85,14 @@ fun ContenidoPantalla(
     login: () -> Unit,
     regist: () -> Unit,
     cambiarPassw: (String) -> Unit,
-    cambiarUser: (String) -> Unit,
+    cambiarEmail: (String) -> Unit,
     cambiarName:(String) ->Unit,
-    cambiarRegisterMode:(Boolean)->Unit
+    cambiarRegisterMode:(Boolean)->Unit,
+    cambiarCode:(String) ->Unit,
 
 
-) {
+
+    ) {
     val label= stringResource(id = R.string.ok)
     val navigateToMainScreen= stringResource(id = R.string.mainScreen)
     val snackbarHostState = remember { SnackbarHostState() }
@@ -117,14 +120,14 @@ fun ContenidoPantalla(
 
             switchMode(state,  cambiarRegisterMode)
             Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_16dp)))
-            emailUsuario(state, cambiarUser)
+            emailUsuario(state, cambiarEmail)
             Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
             passwUsuario(state, cambiarPassw)
             Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
             if (state.registerMode){
                 nameUser(state, cambiarName)
                 Spacer(modifier = Modifier.padding(dimensionResource(id = R.dimen.dimen_6dp)))
-                coachCode(state, cambiarUser)
+                coachCode(state, cambiarCode)
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.dimen_6dp)))
             }
 
@@ -272,7 +275,7 @@ fun nameUser(state: LoginContract.State, cambiarName: (String) -> Unit) {
 
 
     TextField(
-        value = state.name?:"",
+        value = state.username?:"",
         placeholder = { Text(text = stringResource(id = R.string.username)) },
 
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
