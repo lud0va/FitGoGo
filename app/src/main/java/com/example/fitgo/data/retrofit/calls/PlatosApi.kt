@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 interface PlatosApi {
 
-    @GET("/plato/getByDieta")
+    @GET("plato/getByDieta")
     suspend fun getAllByDieta(@Query("iddieta") iddieta:Int): Response<List<Plato>>
 }

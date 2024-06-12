@@ -210,11 +210,11 @@ fun platoItem(
 
             Text(
                 modifier = Modifier.weight(weight = 0.4F),
-                text = plato.nombre
+                text = plato.nombre+""
             )
             Text(
                 modifier = Modifier.weight(weight = 0.4F),
-                text = plato.desc
+                text = plato.desc+""
 
             )
 

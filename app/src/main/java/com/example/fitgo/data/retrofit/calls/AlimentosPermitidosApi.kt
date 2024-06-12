@@ -8,6 +8,6 @@ import retrofit2.http.Query
 
 interface AlimentosPermitidosApi {
 
-    @GET("/alimentosPermitidos/byDietaId")
+    @GET("alimentosPermitidos/byDietaId")
     suspend fun getAllByDieta(@Query("iddieta")  iddieta:Int): Response<List<AlimentosPermitidos>>
 }

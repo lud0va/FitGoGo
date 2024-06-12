@@ -8,9 +8,9 @@ import retrofit2.http.Query
 
 interface EntrenamientosApi {
 
-    @GET("/entrenamientos/getByEmail")
+    @GET("entrenamientos/getByEmail")
     suspend fun getAllEntrenamientos(@Query("email") email: String): Response<List<Entrenamientos>>
-    @GET("/entrenamientos/byId")
+    @GET("entrenamientos/byId")
     suspend fun getById(@Query("id")email: Int):Response<Entrenamientos>
 
     @GET("entrenamientos/getByDia")

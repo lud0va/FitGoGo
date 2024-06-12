@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface EjerciciosApi {
-    @GET("/ejercicios")
+    @GET("ejercicios")
     suspend fun getByEntrenamiento(@Query("idEntrenamiento")id: Int): Response<List<Ejercicios>>
 
 }

@@ -60,56 +60,11 @@ fun SplashScreen(navController: NavController) {
            .background(Color.Black)
        
    ) {
-       Image(painter = painterResource(id= R.drawable.ic_launcher_foreground), contentDescription ="" ,Modifier.scale(scale.value))
-       ProgressBar(percentege = 1f , animDuration =3000 )
+       Image(painter = painterResource(id= R.drawable.fitgo), contentDescription ="" ,Modifier.scale(scale.value))
+
 
    }
 
 }
 
 
-@Composable
-fun ProgressBar(
-    percentege:Float,
-
-    radius: Dp =100.dp,
-    color:Color= Color.White,
-    strokeWidth:Dp=8.dp,
-    animDuration:Int,
-    animDelay:Int=0
-){
-    var animPlay by remember {
-        mutableStateOf(false)
-    }
-    val  currPer= animateFloatAsState(
-        targetValue =if (animPlay) percentege else 0f ,
-        animationSpec = tween(
-            durationMillis = animDuration,
-            delayMillis = animDelay
-        )
-    )
-    LaunchedEffect(key1 = true) {
-        animPlay=true
-    }
-
-    Box(contentAlignment = Alignment.Center ,
-        modifier = Modifier.size(radius*2f)
-    ){
-        Canvas(modifier = Modifier.size(radius*2f) ){
-            drawArc(
-                color = color,
-                -90F,360*currPer.value,
-                useCenter = false,
-                style = Stroke(
-                    strokeWidth.toPx(),cap=StrokeCap.Round
-                )
-
-            )
-        }
-
-    }
-
-
-
-
-}

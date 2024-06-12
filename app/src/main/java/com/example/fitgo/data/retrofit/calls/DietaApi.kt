@@ -7,8 +7,8 @@ import retrofit2.http.Query
 
 interface DietaApi {
 
-    @GET("/dietas/byId")
+    @GET("dietas/byId")
     suspend fun getDieta(@Query("id")id:Int):Response<Dieta>
-    @GET("/dietas/byEmail")
+    @GET("dietas/byEmail")
     suspend fun getAllDietaByEmail(@Query("email")email:String):Response<List<Dieta>>
 }
